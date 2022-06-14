@@ -1,61 +1,63 @@
 def tennis_score(score)
+  player1_points = score[0] 
+  player2_points = score[1]
+  points_diff = player1_points - player2_points 
   result = ""
-  score_diff = score[0] - score[1]
 
-  # points are scored as 'Love', 'Fifteen', 'Thirty', 'Forty' and if both players have forty then the result is 'Deuce'
-  
-  # prepare first part of result taking into account 'Deuce' which should be returned straight away
-  case
-    when score[0] == 0
-      result += "Love-"
-    when score[0] == 1
-      result += "Fifteen-"
-    when score[0] == 2 && score_diff != -2
-      result += "Thirty-"
-    when score[0] == 3
-      if score[1] == 3
-        result += "Deuce"
-        return result
-      elsif score_diff != -1 && score_diff != -2
-        result += "Forty-"
-      end
+  # check for all instances where player1 and player2 have the same score:
+  if points_diff == 0 
+    case 
+      when player1_points >=3
+        result = "Deuce"
+      when player1_points == 0
+        result = "Love-All"
+      when player1_points == 1
+        result = "Fifteen-All"
+      when player1_points == 2
+        result = "Thirty-All"
+    end
+    return result;
   end
 
-  # test for case were players have the same points (append 'All') not including 'Deuce' as that's automatically taken care of above
-  if score_diff == 0 && score[1] < 3
-    result += "All"
-    return result
-  elsif score_diff == 0 && score[1] >= 3
-    result += "Deuce"
+  # check for all instances where either player1 or player2 has either won the game or has advantage:
+  if player1_points >= 4 || player2_points >= 4
+    case
+    when points_diff == 1
+      result = "Player1-Advantage"
+    when points_diff == 2
+      result = "Player1-Wins"
+    when points_diff == -1
+      result = "Player2-Advantage"
+    when points_diff == -2
+      result = "Player2-Wins"
+    end
     return result
   end
 
-  # prepare second part of result not including 'Deuce' and instances where the players have the same points ('All') as this is taken care of above
+  # now that the above has been checked, determine the first part of the result from player1's points
   case
-    when score[1] == 0
+    when player1_points == 0
+      result = "Love-"
+    when player1_points == 1
+      result = "Fifteen-"
+    when player1_points == 2
+      result = "Thirty-"
+    when player1_points == 3
+      result = "Forty-"
+  end
+
+  # now that the above has been checked, determine the second part of the result from player2's points
+  case
+    when player2_points == 0
       result += "Love"
-      return result
-    when score[1] == 1
+    when player2_points == 1
       result += "Fifteen"
-      return result
-    when score[1] == 2 && !result.empty?
+    when player2_points == 2
       result += "Thirty"
-      return result
-    when score[1] == 3 && !result.empty?
+    when player2_points == 3
       result += "Forty"
-      return result
   end
-
-  case
-    when score_diff == 1
-      result += "Player1-Advantage"
-    when score_diff == -1
-      result += "Player2-Advantage"
-    when score_diff == 2
-      result += "Player1-Wins"
-    when score_diff == -2
-      result += "Player2-Wins"
-  end
-
+  
   result
+  
 end
