@@ -1,4 +1,6 @@
-#Follow these steps to set up and play
+# Follow these steps to set up and play
+
+## Here's the [Tennis Kata Spec][link](https://learn.madetech.com/katas/tennis/)
 
 * find/create a suitable folder on your system using terminal: `mkdir my-folder`
 * navigate to that folder: `cd my-folder` 
@@ -7,3 +9,5 @@
 * open the terminal in VSCode
 * run the command: `bundle install --path vendor/bundle` 
 * run the tests: `bundle exec rspec`
+
+**Enjoy!!**
