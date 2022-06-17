@@ -1,6 +1,8 @@
-# Follow these steps to set up and play
+# Tennis Kata with TDD
 
-## Here's the [Tennis Kata Spec][link](https://learn.madetech.com/katas/tennis/)
+Here's the [Tennis Kata Spec](https://learn.madetech.com/katas/tennis/)
+
+## Follow These Steps to Set-Up & Play
 
 * find/create a suitable folder on your system using terminal: `mkdir my-folder`
 * navigate to that folder: `cd my-folder` 
@@ -10,4 +12,4 @@
 * run the command: `bundle install --path vendor/bundle` 
 * run the tests: `bundle exec rspec`
 
-**Enjoy!!**
+***Enjoy!!***
